@@ -1,0 +1,70 @@
+<div class="list row">
+    <div class="col-md-8">
+
+
+      <div class="input-group mb-3">
+        
+
+        <select class="form-control"  [(ngModel)]="level" > 
+          <option *ngFor="let lv of levels">{{lv}} </option>
+        </select>
+
+
+
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            (click)="listLevel()"
+          >
+            List
+          </button>
+        </div>
+      </div>
+
+
+
+    </div>
+    <div class="col-md-6">
+      <h4>Digimon List</h4>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let digimon of digimons; let i = index"
+          [class.active]="i == currentIndex"
+          (click)="setActiveDigimon(digimon, i)"
+        >
+        {{ digimon.name }}
+        </li>
+      </ul>
+  
+    </div>
+    <div class="col-md-6">
+      
+      <div class="col-md-6">
+        <div *ngIf="currentDigimon">
+          <h4>Digimon</h4>
+          <div>
+            <label><strong>Name:</strong></label> {{ currentDigimon.name }}
+          </div>
+          <div>
+            <label><strong>Level:</strong></label>
+            {{ currentDigimon.level }}
+          </div>
+          <div>
+            <label><strong>Picture:</strong></label>
+            <img src={{currentDigimon.img}} alt="Digimon not found">
+          </div>
+    
+         
+        </div>
+    
+        <div *ngIf="!currentDigimon">
+          <br />
+          <p>Please click on a Digimon...</p>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
